@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <!--"defer" carrega o script somente quando a pagina HTML ser 100% carregada-->
     <script src="script.js" defer="defer"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -21,12 +22,15 @@
                 <div class="mt-3">
                     <label for="cep" class="form-label">CEP</label>
                     <input type="text" id="cep" class="form-control" placeholder="CEP">
+                    <div class="invalid-feedback">
+                        CEP invalido
+                    </div>
                 </div>
                 
                 <div class="row mt-3">
                     <div  class="col-6">
                         <label for="rua" class="form-label">Rua/Avenida/Logradoruro</label>
-                        <input type="text" id="cep" class="form-control" placeholder="Rua/Avenida/Logradoruro"> 
+                        <input type="text" id="rua" class="form-control" placeholder="Rua/Avenida/Logradoruro"> 
                     </div><!--col-6-->
                     <div  class="col-6">
                         <label for="numero" class="form-label">Número</label>
@@ -48,5 +52,11 @@
             </div><!---col-12-->
         </div><!--row-->
     </div><!--container-->
+    
+    <div id="loadingOverlay" class="d-none justify-content-center align-items-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
 </body>
 </html>
