@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Story+Script&display=swap');
+
 #loadingOverlay {
     /* as linhas abaixo garatem que o elemnto ocupe 100% do espaço da tela */
     position: fixed;
@@ -15,4 +17,40 @@
     /* aumenta o tamanho do spinner */
     width: 100px;
     height: 100px;
+}
+
+body {
+    /* altera a cor do fundo da pagina */
+    background-color: rgb(204, 228, 255);
+}
+
+h1 {
+    font-family: "Pinyon Script"
+}
+
+input[type="text"], select {
+    /* altera a cor de fundo dos campos de texto (input) 
+    e seletor de 'estados' (select) */
+    /* 'important' e necessario para forçar a substituiçao
+    das cores do seletor de 'estados' (select) */
+    background-color: rgb(129, 163, 255) !important;
+    border: rgb(4, 94, 167) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+input[type="text"]:disabled, select:disabled {
+    /* altera o estilo dos campos desabilitados */
+    background-color: rgb(163, 195, 255) !important;
+    border: green !important;
+    color: white !important;
+}
+
+input[type="text"]::placeholder {
+    /* altera a cor do texto de campos que nao possuem informaçoes preenchidas. */
+    color: rgb(255, 255, 255);
+}
+
+label {
+    /* altera a cor do rotulo dos campos */
+    color: rgb(21, 95, 190)
 }

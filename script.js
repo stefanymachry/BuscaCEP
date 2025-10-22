@@ -4,11 +4,11 @@
 
 //rpocura pelo campo de "CEP" no documento HTML
 const txt_cep = document.querySelector("#cep");
-
 const txt_rua = document.querySelector("#rua");
 const txt_num = document.querySelector("#numero");
 const txt_cidade = document.querySelector("#cidade");
-const txt_bairro = document.querySelector("bairro");
+const txt_bairro = document.querySelector("#bairro");
+const txt_estado = document.querySelector("#estado");
 
 // procura pelo elemneto de spinner no documento HTML
 const loadingOverlay = document.querySelector("#loadingOverlay");
@@ -35,6 +35,11 @@ function consultaCEP() {
         
         // remove o "-" (traço) da variavel 'cep'.
         cep = cep.replace("-", "");
+
+        /* limpa e habilita os campos caso tenha sido desabilitados.
+        exemplo: usuario digitou um CEP de uma cidade e depois o CEP de dois irmaos/rS.
+        sem esta funçao, os campos nao preenchidos (rua, etc.) continuem preenchidos com os dados interiores. */
+        limpaCampos();
         
         // exibe o spinner de 'carregando'
         loadingOverlay.classList.add('d-flex');
@@ -63,12 +68,43 @@ function consultaCEP() {
                 // remove a mensagem de "CEP invalido!" abaixo do campo de CEP (se existir)
                 txt_cep.classList.remove("is-invalid"); 
                 // preenche os campos de texto com as informacoes retornadas pela API.
+                if (jsonResponse.logradouro !== "") {
                 txt_rua.value = jsonResponse.logradouro;
+                txt_rua.disabled = true;
+                }
+
+                if (jsonResponse.localidade !== "") {
                 txt_cidade.value = jsonResponse.localidade;
+                txt_cidade.disabled = true;
+                }
+
+                if (jsonResponse.barro !== "") {
                 txt_bairro.value = jsonResponse.bairro;
+                txt_bairro.disabled = true;
+                }
+
+                if (jsonResponse.uf !== "") {
+                txt_estado.value = jsonResponse.uf;
+                txt_estado.disabled = true;
+                }
+
             }
         });
     }
+}
+
+function limpaCampos() {
+    /* limpa os valores atuais dos campos */
+    txt_rua.value = "";
+    txt_cidade.value = "";
+    txt_bairro.value = "";
+    txt_estado.value = "";
+
+    /* reabilita os campos que por ventura possam ter sido desabilitados */
+    txt_rua.disabled = false;
+    txt_cidade.disabled = false;
+    txt_bairro.disabled = false;
+    txt_estado.disabled = false;
 }
 // ---------------------------------------------
 // 3. Escutadores de evento e inicio
@@ -77,7 +113,14 @@ function consultaCEP() {
 // executa funçao ao digiatar qualquer tecla no campo "CEP"
 txt_cep.addEventListener("keyup", consultaCEP);
 
-// adiciona mascara ao campo de "CEP"
 jQuery(function($){
+    // adiciona mascara ao campo de "CEP"
     $("#cep").mask("99999-999");
+    // formata o campo de "numero" para aceitar somente nuemros.
+    $('#nuemro').mask('0#', {
+        translation: {
+            '0': {patter: /[0-9]/, recurcive: true }
+        }
+    });
+    
 });
