@@ -33,14 +33,14 @@ input[type="text"], select {
     e seletor de 'estados' (select) */
     /* 'important' e necessario para forçar a substituiçao
     das cores do seletor de 'estados' (select) */
-    background-color: rgb(129, 163, 255) !important;
+    background-color:rgb(146, 184, 255) !important;
     border: rgb(4, 94, 167) !important;
     color: rgb(255, 255, 255) !important;
 }
 
 input[type="text"]:disabled, select:disabled {
     /* altera o estilo dos campos desabilitados */
-    background-color: rgb(163, 195, 255) !important;
+    background-color: rgb(113, 151, 255) !important;
     border: green !important;
     color: white !important;
 }
